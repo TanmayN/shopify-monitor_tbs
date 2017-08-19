@@ -25,6 +25,10 @@
         "access_token": "access token over here",
         "access_token_secret": "access token secret here"
     },
+	"discord": {
+		"active": true,
+		"token": "token goes here"
+	},
     "sites": [
         "https://shop-usa.palaceskateboards.com/sitemap_products_1.xml",
         "http://kithnyc.com/sitemap_products_1.xml"

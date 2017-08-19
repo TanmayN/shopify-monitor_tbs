@@ -144,6 +144,28 @@ if (configuration.twitter.active) {
   var T = new Twit({consumer_key: configuration.twitter.consumer_key, consumer_secret: configuration.twitter.consumer_secret, access_token: configuration.twitter.access_token, access_token_secret: configuration.twitter.access_token_secret})
 }
 
+if (configuration.discord.active) {
+	api.log('info', 'Discord service is currently enabled.')
+	const Discord = require('discord.js')
+	const client = new Discord.Client()
+
+	client.on('ready', ()=> {
+		api.log('I am ready');
+	});
+
+	client.on('message', message => {
+		if (message.content === 'ping') {
+			message.reply('pong');
+		}
+	});
+
+	//client.on(
+
+	client.login(configuration.discord.token);
+
+}
+
+
 function getInitialData() {
   api.log('info', 'Getting initial data...')
   api.log('info', `Interval set for every ${configuration.interval}ms`)
@@ -250,6 +272,8 @@ function seek() {
 
                             slackNotification(parsedResult, '#4FC3F7', 'Restock')
                             twitterNotification(parsedResult, 'restock')
+
+							discordNotification(parsedResult, )
                           }
                         }
                       })
